@@ -1,11 +1,22 @@
+# %%
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as pgo
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, mean_pinball_loss, mean_squared_error
 
+train = pd.read_csv('./data/train.csv')
+test = pd.read_csv('./data/test.csv')
+submission = pd.read_csv('./data/sampleSubmission.csv')
 
+print('train', train.shape)
+print('test', test.shape)
+# %%
+tr_tgt = train[['count']]
+
+# %%
 class Regressor:
     
     def __init__(self, tr_ftr, te_ftr, tr_tgt):
@@ -43,3 +54,7 @@ class Regressor:
         print(f'MAPE : {mape}')
         print(f'PINBALL : {mpl}')
         print(f'MSE : {mse}')
+
+# %%
+
+regressor = Regressor()
